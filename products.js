@@ -88,3 +88,70 @@ const products = [
     imageDescription: "",
   },
 ];
+function criarCard(cards){
+
+  /*   <li class="product">
+  <img
+    src="./img/products/no-img.svg"
+    alt=""
+    title=""
+    class="product-img"
+  />
+  <main class="product-main">
+    <h1 class="product-title">Uva Crimson</h1>
+    <h5 class="product-category">Frutas</h5>
+    <strong class="product-price">R$ 8.99</strong>
+  </main>
+</li> */
+
+let li = document.createElement("li")
+let img = document.createElement("img")
+let main = document.createElement("main")
+let h1 = document.createElement("h1")
+let h5 = document.createElement("h5")
+let strong = document.createElement("strong")
+
+li.classList.add("product")
+img.classList.add("product-img")
+main.classList.add("product-main")
+h1.classList.add("product-title")
+h5.classList.add("product-category")
+strong.classList.add("product-price")
+
+if(cards.image === undefined ){
+  img.src = "img/products/no-img.svg"
+}
+else{
+  img.src = cards.image
+}
+img.alt = cards.imageDescription
+h1.innerText= cards.title
+h5.innerText =cards.category
+strong.innerText = `R$${cards.price}`
+
+main.appendChild(h1)
+main.appendChild(h5)
+main.appendChild(strong)
+li.appendChild(img)
+li.appendChild(main)
+return li
+}
+
+for(let i = 0; i< products.length; i++){
+   let x = criarCard(products[i])
+   let ul = ""
+   if(products[i].category == "Frutas"){
+      ul = document.querySelector(".Frutas")
+   }
+   
+   
+   if(products[i].category == "Bebidas"){
+      ul = document.querySelector(".bebidas")
+   }
+   
+   
+   if(products[i].category == "Higiene"){
+      ul = document.querySelector(".Higiene")
+   }
+   ul.appendChild(x)
+}
